@@ -1,0 +1,17 @@
+.table {
+  font-family: "Hind Siliguri", sans-serif;
+}
+.table_icons {
+  color: red;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.table_icons_add {
+  font-size: 2.5rem !important;
+  color: #42a5f5;
+}
+.table_icons_clear {
+  font-size: 2.5rem !important;
+  color: #d83f87;
+}/*# sourceMappingURL=table_page.css.map */

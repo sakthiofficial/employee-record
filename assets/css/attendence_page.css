@@ -1,0 +1,53 @@
+.attendence_page_table {
+  font-family: "Hind Siliguri", sans-serif;
+  text-transform: capitalize;
+}
+.attendence_page_table_icons {
+  color: red;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.attendence_page_table_icons_add {
+  font-size: 2rem !important;
+  color: #42a5f5;
+}
+.attendence_page_table-tbody input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 5px 0.5rem;
+  font-weight: 500;
+  font-family: "Hind Siliguri", sans-serif;
+}
+.attendence_page_table-tbody .attendence {
+  position: relative;
+  cursor: pointer;
+}
+.attendence_page_table-tbody .attendence_dropdown {
+  transition: 500ms;
+}
+.attendence_page_table-tbody .attendence_dropdown_menus {
+  position: absolute;
+  text-align: left;
+  left: 0px;
+  background-color: #fff;
+  z-index: 100;
+  box-shadow: 0px 2px 5px 0px rgb(125, 125, 125);
+  transition: 500ms;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.attendence_page_table-tbody .attendence_dropdown_menus p {
+  padding: 0.5rem 0.5rem;
+  margin: 0px;
+  border-bottom: 1px solid;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.attendence_page_table-tbody .attendence_dropdown_menus .present {
+  color: #42a5f5;
+}
+.attendence_page_table-tbody .attendence_dropdown_menus .absent {
+  color: #d83f87;
+}/*# sourceMappingURL=attendence_page.css.map */

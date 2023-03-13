@@ -1,0 +1,42 @@
+header {
+  min-width: 3rem;
+  background-color: #42a5f5;
+}
+header:hover {
+  transition: 500ms;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+header nav {
+  padding: 0rem 0px;
+}
+header nav ul {
+  list-style: none;
+  padding: 0px;
+  text-transform: capitalize;
+  font-family: "Ubuntu", sans-serif;
+}
+header nav ul a {
+  text-decoration: none;
+}
+header nav ul .logos {
+  margin-right: 10px;
+}
+header nav ul .logos svg {
+  margin: 0px !important;
+}
+header nav ul li {
+  cursor: pointer;
+  color: white;
+  font-size: 1.1rem;
+  padding: 1rem 0.5rem;
+  font-weight: 550;
+}
+header nav ul li img {
+  width: 1.5rem;
+  height: 1.4rem;
+}
+header nav ul li .icon {
+  margin-right: 0.5rem;
+  color: rgb(223, 221, 221);
+}/*# sourceMappingURL=navbar_page.css.map */

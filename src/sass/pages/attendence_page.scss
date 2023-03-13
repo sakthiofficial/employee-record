@@ -1,0 +1,79 @@
+@use "../utilites/colors.scss" as clr;
+@use"../utilites/fonts.scss" as ft;
+
+.attendence_page {
+    &_table {
+        font-family: ft.$theme_font;
+        text-transform: capitalize;
+
+        &_icons {
+            color: red;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+
+            &_add {
+                font-size: 2rem !important;
+                color: clr.$theme_color;
+            }
+
+        }
+
+        &-tbody {
+            input {
+                border: none;
+                outline: none;
+                width: 100%;
+                padding: 5px 0.5rem;
+                font-weight: 500;
+                font-family: ft.$theme_font;
+
+            }
+
+            .attendence {
+                position: relative;
+                cursor: pointer;
+
+
+
+                &_dropdown {
+                    transition: 500ms;
+
+                    &_menus {
+                        position: absolute;
+                        text-align: left;
+                        left: 0px;
+                        background-color: #fff;
+                        z-index: 100;
+                        box-shadow: 0px 2px 5px 0px rgb(125, 125, 125);
+                        transition: 500ms;
+                        border-radius: 5px;
+                        overflow: hidden;
+
+                        p {
+                            padding: 0.5rem 0.5rem;
+                            margin: 0px;
+                            border-bottom: 1px solid;
+                            font-size: 1rem;
+                            font-weight: 500;
+
+
+                        }
+
+                        .present {
+                            color: clr.$theme_color;
+
+                        }
+
+                        .absent {
+                            color: clr.$danger_color
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+}

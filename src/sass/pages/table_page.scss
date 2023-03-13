@@ -1,0 +1,25 @@
+@use "../utilites/colors.scss" as clr;
+@use"../utilites/fonts.scss" as ft;
+
+.table {
+    font-family: ft.$theme_font;
+
+    &_icons {
+        color: red;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+
+
+        &_add {
+            font-size: 2.5rem !important;
+            color: clr.$theme_color;
+        }
+
+        &_clear {
+            font-size: 2.5rem !important;
+
+            color: clr.$danger_color;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+.overview_page {
+    text-transform: capitalize;
+
+    &_icons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-name {
+            .dropdown {
+                position: relative;
+
+
+                &_menus {
+                    position: absolute;
+                    background-color: #fff;
+                    width: 90%;
+                    box-shadow: 0px 2px 5px 0px black;
+                    max-height: 20rem;
+                    overflow-x: auto;
+
+                    p {
+                        padding: 0.2rem 1rem;
+                        cursor: pointer;
+                    }
+
+                    p:hover {
+                        background-color: black;
+                    }
+                }
+            }
+        }
+
+        &-name {
+            display: flex;
+            align-items: center;
+
+            input {
+                height: 2rem;
+            }
+
+            p {
+                margin-top: 10px;
+            }
+        }
+    }
+}

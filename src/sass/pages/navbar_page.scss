@@ -1,0 +1,62 @@
+@use "../utilites/colors.scss" as clr;
+@use"../utilites/fonts.scss" as ft;
+
+header {
+
+    min-width: 3rem;
+
+    background-color: clr.$theme_color;
+
+    &:hover {
+        transition: 500ms;
+        width: fit-content;
+    }
+
+
+    nav {
+        padding: 0rem 0px;
+
+
+
+        ul {
+            list-style: none;
+            padding: 0px;
+            text-transform: capitalize;
+            font-family: ft.$title_font ;
+
+            a {
+                text-decoration: none;
+            }
+
+            .logos {
+                margin-right: 10px;
+
+                svg {
+                    margin: 0px !important;
+                }
+            }
+
+            li {
+                cursor: pointer;
+                color: white;
+                font-size: 1.1rem;
+                padding: 1rem 0.5rem;
+                font-weight: 550;
+
+                img {
+                    width: 1.5rem;
+                    height: 1.4rem;
+                }
+
+                .icon {
+                    margin-right: 0.5rem;
+                    color: rgb(223, 221, 221);
+                }
+
+            }
+
+        }
+    }
+
+
+}

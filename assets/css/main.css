@@ -1,0 +1,10 @@
+@import url("./pages/navbar_page.scss");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap");
+@import url("./global/reset.scss");
+@import url("./pages/main_page.scss");
+@import url("./pages/table_page.scss");
+@import url("./pages/attendence_page.scss");
+@import url("./pages/overview_page.scss");
+@import url("./global/common.scss");/*# sourceMappingURL=main.css.map */
