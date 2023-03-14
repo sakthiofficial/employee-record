@@ -1,7 +1,14 @@
 @use "../utilites/fonts.scss" as font;
+@use "../abstract/mixins.scss" as res;
 
 * {
     padding: 0px;
     margin: 0px;
 
+}
+
+body {
+    @include res.responsive(xs) {
+        background-color: black;
+    }
 }

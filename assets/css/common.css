@@ -2,7 +2,7 @@
   color: #42a5f5;
   background-color: rgba(0, 0, 0, 0.1294117647);
   position: absolute;
-  width: 86%;
+  width: calc(100% - 4rem);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -20,4 +20,10 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.App {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
 }/*# sourceMappingURL=common.css.map */

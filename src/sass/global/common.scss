@@ -1,10 +1,11 @@
 @use "../utilites/colors.scss" as clr;
+@use "../abstract/mixins.scss" as res;
 
 .loder {
     color: clr.$theme_color;
     background-color: #00000021;
     position: absolute;
-    width: 86%;
+    width: calc(100% - 4rem);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -25,4 +26,13 @@
             }
         }
     }
+}
+
+.App {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+
+
+
 }

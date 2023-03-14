@@ -1,0 +1,19 @@
+.home_table {
+  text-transform: capitalize;
+}
+.home_table_tbody-icons {
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+.home_table_tbody-icons .edit-icon {
+  color: #42a5f5;
+  margin-left: 1rem;
+}
+.home_table_tbody-icons .delete-icon {
+  color: #d83f87;
+}
+.home_table .name {
+  font-weight: 590 !important;
+  color: #42a5f5 !important;
+}/*# sourceMappingURL=home_page.css.map */

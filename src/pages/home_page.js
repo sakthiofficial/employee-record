@@ -10,11 +10,13 @@ import { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import { api } from "../assets/api_Endpoint"
+import { api } from "../assets/api_Endpoint";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 export function HomeTable() {
     const [add, setadd] = useState(false)
     const [loder, setloder] = useState(false)
-
+    const [edit, setedit] = useState(true)
     const [table, settable] = useState([]);
     function getItem() {
         fetch(api).then(dt => dt.json()).then(res => settable(res))
@@ -24,47 +26,88 @@ export function HomeTable() {
         setloder(true)
         getItem()
         setloder(false)
+        setedit(false)
 
     }, [])
+    function deleteitem(id) {
+        fetch(`${api}/employee/delete/${id}`, {
+            method: "DELETE"
+        }).then(res => {
+            if (res.status == 200) {
+                setloder(false)
+                setedit(false)
+
+                getItem()
+
+            }
+            console.log(res.status);
+        })
+    }
 
     let validationYup = Yup.object().shape({
-        name: Yup.string().min(5, "Enter minumum 5 characters").max(15, "Enter lessthen 15 characters").required("Name"),
-        id: Yup.string().min(4, "Enter minumum 4 numbers").max(15, "Enter less then 15 numbers").required("Id"),
-        work: Yup.string().min(5, "Enter minumum 5 characters").max(15, "Enter less then 15 characters").required("Work"),
-        email: Yup.string().min(5, "Enter minumum 5 characters").max(15, "Enter less then 15 characters").required("Email")
+        name: Yup.string().min(5, "Enter minumum 5 characters").max(15, "Enter lessthen 20 characters").required("Name"),
+        work: Yup.string().min(5, "Enter minumum 5 characters").max(25, "Enter less then 25 characters").required("Work"),
 
     })
-    let { initialValues, errors, handleChange, handleSubmit } = useFormik({
+    let { initialValues, values, errors, handleChange, handleSubmit } = useFormik({
         initialValues: {
             name: "",
-            id: "",
             work: "",
-            email: ""
+            method: "add",
+            id: null
         },
         validationSchema: validationYup,
         onSubmit: (val) => {
             setloder(true)
-            console.log(val);
-            fetch(`${api}/employee/add`, {
-                method: "POST",
-                body: JSON.stringify(val),
-                headers: {
-                    "Content-type": "application/json"
-                }
-            }).then(dt => {
-                setloder(false)
-                setadd(false)
-                getItem()
 
-                console.log(dt)
-            })
+            if (val.method == "add") {
+                fetch(`${api}/employee/add`, {
+                    method: "POST",
+                    body: JSON.stringify({ name: val.name, work: val.work }),
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                }).then(dt => {
+                    setloder(false)
+                    setadd(false)
+                    getItem()
+
+
+                })
+            } else {
+                fetch(`${api}/employee/edit`, {
+                    method: "PUT",
+                    body: JSON.stringify({ name: val.name, work: val.work, id: val.id }),
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                }).then(res => {
+                    if (res.status == 200) {
+                        setloder(false)
+                        getItem()
+                    }
+                })
+                setadd(false)
+                setedit(false)
+
+            }
         }
     })
+    function edit_button(name, work, id) {
+        values.name = name;
+        values.work = work;
+        values.id = id
+        values.method = "edit"
+    }
     return (
-        <div className="table">
+        <div className="table home_table">
             <div className="table_icons">
                 {add ? <> <IconButton > <CheckIcon onClick={handleSubmit} className='table_icons_add' /></IconButton>
-                    <IconButton > <ClearIcon onClick={() => setadd(false)} className='table_icons_clear' /></IconButton></> : <IconButton onClick={() => setadd(true)}> <AddIcon className='table_icons_add' /></IconButton>}
+                    <IconButton > <ClearIcon onClick={() => setadd(false)} className='table_icons_clear' /></IconButton></> : <IconButton onClick={() => setadd(true)}> <AddIcon onClick={() => {
+                        values.name = "";
+                        values.work = "";
+                        values.method = "add"
+                    }} className='table_icons_add' /></IconButton>}
 
 
 
@@ -80,25 +123,25 @@ export function HomeTable() {
                     <thead text="dark">
                         <tr>
                             <th>No</th>
-                            <th>Id</th>
                             <th>Name</th>
                             <th>Work</th>
-                            <th>Email</th>
 
+                            {edit ? <th>Tools</th> : null}
                         </tr>
 
                     </thead>
-                    <tbody>
+                    <tbody className='home_table_tbody' >
                         {
                             table.map((val, ind) => {
                                 return (
                                     <tr>
                                         <td>{ind + 1}</td>
-                                        <td>{val._id}</td>
-                                        <td>{val.name}</td>
+                                        <td onClick={() => setedit(!edit)} className="name">{val.name}</td>
                                         <td>{val.work}</td>
-                                        <td>{val.email}</td>
-
+                                        {edit ? <td className='home_table_tbody-icons' > <EditIcon className='edit-icon' onClick={() => {
+                                            setadd(true);
+                                            edit_button(val.name, val.work, val._id)
+                                        }} /><DeleteIcon onClick={() => deleteitem(val._id)} className='delete-icon' /></td> : null}
 
                                     </tr>
                                 )
@@ -108,14 +151,15 @@ export function HomeTable() {
                             add ? <tr>
 
                                 <td>{table.length + 1}</td>
-                                <td><TextField id="standard-basic" label={errors.id ? errors.id : "Id"} color={errors.id ? "error" : "primary"} variant="standard" type="number" name="id" onChange={handleChange} /></td>
-                                <td><TextField id="standard-basic" label={errors.name ? errors.name : "Name"} color={errors.name ? "error" : "primary"} name="name" onChange={handleChange} variant="standard" /></td>
-                                <td><TextField id="standard-basic" label={errors.work ? errors.work : "Work"} color={errors.work ? "error" : "primary"} variant="standard" type="text" name="work" onChange={handleChange} /></td>
-                                <td><TextField id="standard-basic" label={errors.email ? errors.email : "Email"} color={errors.email ? "error" : "primary"} variant="standard" type="email" name="email" onChange={handleChange} /></td>
+                                <td><TextField id="standard-basic" value={values.name} label={errors.name ? errors.name : "Name"} color={errors.name ? "error" : "primary"} name="name" onChange={handleChange} variant="standard" /></td>
+                                <td><TextField id="standard-basic" value={values.work} label={errors.work ? errors.work : "Work"} color={errors.work ? "error" : "primary"} variant="standard" type="text" name="work" onChange={handleChange} /></td>
 
 
 
                             </tr> : null
+                        }
+                        {
+
                         }
                     </tbody>
                 </Table>

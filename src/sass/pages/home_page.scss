@@ -1,0 +1,27 @@
+@use "../utilites/colors.scss" as clr;
+
+.home_table {
+    text-transform: capitalize;
+
+    &_tbody {
+        &-icons {
+            display: flex;
+            justify-content: space-evenly;
+            cursor: pointer;
+
+            .edit-icon {
+                color: clr.$theme_color;
+                margin-left: 1rem;
+            }
+
+            .delete-icon {
+                color: clr.$danger_color;
+            }
+        }
+    }
+
+    .name {
+        font-weight: 590 !important;
+        color: clr.$theme_color !important;
+    }
+}

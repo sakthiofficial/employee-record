@@ -1,0 +1,43 @@
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+
+
+@mixin responsive($picxels) {
+    @if $picxels ==xs {
+        @media only screen and (max-width: 576px) {
+            @content;
+        }
+    }
+
+    @if $picxels ==sm {
+
+        // Small devices (landscape phones, 576px and up)
+        @media only screen and (min-width: 576px) {}
+    }
+
+    @if $picxels ==md {
+
+        // Medium devices (tablets, 768px and up)
+        @media only screen and (min-width: 992px) {
+            @content;
+        }
+    }
+
+    @if $picxels ==lg {
+
+        // Large devices (desktops, 992px and up)
+        @media only screen and (min-width: 1450px) {
+            @content;
+        }
+    }
+
+    @if $picxels ==xl {
+
+        // Large devices (desktops, 992px and up)
+        @media only screen and (min-width: 1450px) {
+            @content;
+        }
+
+
+    }
+}

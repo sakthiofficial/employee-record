@@ -7,4 +7,5 @@
 @import url("./pages/table_page.scss");
 @import url("./pages/attendence_page.scss");
 @import url("./pages/overview_page.scss");
-@import url("./global/common.scss");/*# sourceMappingURL=main.css.map */
+@import url("./global/common.scss");
+@import url("./pages/home_page.scss");/*# sourceMappingURL=main.css.map */
