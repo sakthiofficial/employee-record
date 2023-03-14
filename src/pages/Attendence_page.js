@@ -10,11 +10,18 @@ import { Table } from 'react-bootstrap';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { textAlign } from "@mui/system";
 import { api } from "../assets/api_Endpoint";
+import RefreshIcon from '@mui/icons-material/Refresh';
+import { useNavigate } from "react-router-dom";
 
 export function Attendence() {
     let [attendence, setattendence] = useState(null)
-    let [place, setplace] = useState(null)
+    let [place, setplace] = useState(null);
+    let [area, setarea] = useState("banglore")
+    let [inputval, setinputVal] = useState("")
     let dom = useRef()
+    let [loder, setloder] = useState(false)
+    let navigate = useNavigate()
+
     let tableRef = useRef()
     function domManipulation(val) {
         if (val == "Present") {
@@ -37,18 +44,25 @@ export function Attendence() {
     const [date, setdate] = useState(new Date())
     console.log();
     function sendData() {
-        let arr = []
+        setloder(true)
+        let arr = {
+            date: date.getDate(),
+            month: date.getMonth(),
+            year: JSON.stringify(date.getFullYear()),
+            work: inputval,
+            present: [],
+            absent: [],
+            place: tableRef.current.rows[1].cells[3].innerText
+        }
         for (let i = 1; i < tableRef.current.rows.length; i++) {
-            let obj = {
-                name: tableRef.current.rows[i].cells[1].innerText.toLowerCase(),
-                attendence: tableRef.current.rows[i].cells[2].innerText,
-                place: tableRef.current.rows[i].cells[3].innerText,
-                work: tableRef.current.rows[i].cells[4].innerText,
-                date: date.getDate(),
-                month: date.getMonth(),
-                year: date.getFullYear()
+
+            if (tableRef.current.rows[i].cells[2].innerText.toLowerCase() == "present") {
+                arr.present.push(tableRef.current.rows[i].cells[1].innerText.toLowerCase())
+            } else {
+                arr.absent.push(tableRef.current.rows[i].cells[1].innerText.toLowerCase())
+
             }
-            arr.push(obj);
+
         }
         fetch(`${api}/attendence`, {
             method: "POST",
@@ -56,7 +70,13 @@ export function Attendence() {
             headers: {
                 "Content-type": "application/json"
             }
-        }).then(res => console.log(res))
+        }).then(res => {
+            if (res.status == 200) {
+                setloder(false)
+                navigate("/overview");
+
+            }
+        })
         console.log(arr);
     }
 
@@ -107,26 +127,33 @@ export function Attendence() {
 
                                     </td>
 
-                                    <td className="attendence" onClick={() => setplace(place == ind ? null : ind)}><span>banglore</span><KeyboardArrowDownIcon />
+                                    <td className="attendence" onClick={() => setplace(place == ind ? null : ind)}><span>{area}</span><KeyboardArrowDownIcon />
                                         {
                                             place === ind ? <div className="attendence_dropdown_menus" >
-                                                <p onClick={(e) => domManipulation(e.target.innerText)} ref={dom} >banglore</p>
-                                                <p onClick={(e) => domManipulation(e.target.innerText)} ref={dom}>hosur</p>
+                                                <p onClick={(e) => setarea(e.target.innerText)} ref={dom} >banglore</p>
+                                                <p onClick={(e) => setarea(e.target.innerText)} ref={dom}>hosur</p>
                                             </div> : null
                                         }
                                     </td>
 
+                                    {ind == 0 ? <td className="attendence_page_tbody-work"><input type="text" onChange={(e) => setinputVal(e.target.value)} /></td> : null}
 
 
                                 </tr>
 
                             )
+
                         })}
 
                     </tbody>
                 </Table>
 
             </div>
+            {
+                loder ? <div className="loder">
+                    <RefreshIcon className='loder_icon' />
+                </div> : null
+            }
         </div>
     )
 }

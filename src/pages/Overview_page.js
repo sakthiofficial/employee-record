@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { useEffect, useState } from "react";
 import { api } from "../assets/api_Endpoint";
+
 export function Overview() {
     const [table, settable] = useState([])
     const [name, setname] = useState([]);
@@ -19,50 +20,33 @@ export function Overview() {
     let [date, setdate] = useState(new Date())
     let [inputVal, setinputVal] = useState(null)
     let [show, setshow] = useState(true)
-    function getData(name, date) {
-        console.log("Iam CLicked");
-        fetch(`${api}/attendence/month/list`, {
-            method: "PUT",
-            body: JSON.stringify({ name: name, month: date.getMonth(), year: date.getFullYear() }),
-            headers: {
-                "Content-type": "application/json"
-            }
-        }).then(dt => dt.json()).then(val => settable(val))
-    }
+    function getData(date) {
 
+        if (date.getMonth()) {
+            fetch(`${api}/attendence/month/list`, {
+                method: "PUT",
+                body: JSON.stringify({ month: date.getMonth(), year: JSON.stringify(date.getFullYear()) }),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then(dt => dt.json()).then(val => settable(val))
+        };
+    }
+    useEffect(() => getData(date))
 
 
     return (
         <div className="overview_page">
             <div className="table">
                 <div className="overview_page_icons">
-                    <div className="overview_page_icons-name">
-                        <p>Name :</p>
-                        <div className="dropdown"><input value={inputVal} type="text" onClick={() => {
-                            setinputVal("")
-                            setshow(true)
-                        }} onChange={(e) => setinputVal(e.target.value)} />
-                            {show ? inputVal == "" || inputVal ? <div className="dropdown_menus">
-                                {
-                                    name.length > 0 ? name.filter(((val) => inputVal == "" ? val.name : val.name.includes(inputVal))).map(val => {
-                                        return (
-                                            <p onClick={() => {
-                                                setinputVal(val.name)
-                                                setshow(false)
-                                            }
-                                            }>{val.name}</p>
-                                        )
-                                    }) : null
-                                }
-                            </div> : null : null}
-                        </div>
 
-                    </div>
                     <div style={{
                         display: "flex", alignItems: "center"
                     }}>
-                        <DatePicker dateFormat={"MM/yyyy"} selected={date} onChange={date => setdate(date)} maxDate={new Date()} placeholderText=" Select Date & Year" isClearable />
-                        <IconButton > <CheckIcon className='attendence_page_table_icons_add' onClick={() => getData(inputVal, date)} /></IconButton>
+                        <DatePicker dateFormat={"MM/yyyy"} selected={date} onChange={date => {
+                            date ? setdate(date) : setdate(new Date())
+                        }} maxDate={new Date()} placeholderText=" Select Date & Year" />
+                        <IconButton > <CheckIcon className='attendence_page_table_icons_add' onClick={() => getData(date)} /></IconButton>
 
                     </div>
 
@@ -75,8 +59,10 @@ export function Overview() {
                     <thead text="dark">
                         <tr>
                             <th>Date</th>
-                            <th>Attendence</th>
-                            <th>Place</th>
+                            {name.map(val => {
+                                return (
+                                    <th>{val.name}</th>)
+                            })}
                             <th>Work</th>
                         </tr>
 
@@ -86,13 +72,25 @@ export function Overview() {
                             return (
                                 <tr key={`overview-tr-${ind}`}>
                                     <td>{val.date}</td>
-                                    <td>{val.attendence}</td>
-                                    <td>{val.place}</td>
-                                    <td>{val.work}</td>                           </tr>
+                                    {name.map(tb => {
+                                        if (val.present.includes(tb.name.toLowerCase())) {
+                                            return (
+                                                <td>{val.place}</td>
+                                            )
+                                        } else {
+                                            return (
+                                                <td style={{ color: "#d83f87" }}>Absent</td>
+                                            )
+                                        }
+                                    })}
+                                    <td>{val.work}</td>
+                                </tr>
                             )
+
                         })}
                     </tbody>
                 </Table>
+
             </div>
         </div >
     )
