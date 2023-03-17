@@ -3,14 +3,20 @@
   text-transform: capitalize;
 }
 .attendence_page_table_icons {
-  color: red;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
+  margin: 1rem 0rem;
+}
+.attendence_page_table_icons input {
+  padding: 2px 5px;
 }
 .attendence_page_table_icons_add {
-  font-size: 2rem !important;
-  color: #42a5f5;
+  font-size: 1.5rem !important;
+  color: #000;
+}
+.attendence_page_table_icons button {
+  color: #f9a825;
 }
 .attendence_page_table-tbody input {
   border: none;

@@ -22,7 +22,8 @@
   cursor: pointer;
 }
 .overview_page_icons-name .dropdown_menus p:hover {
-  background-color: black;
+  background-color: #42a5f5;
+  color: #fff;
 }
 .overview_page_icons-name {
   display: flex;

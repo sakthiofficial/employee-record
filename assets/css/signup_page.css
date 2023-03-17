@@ -1,0 +1,17 @@
+.signup_page {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup_page form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.signup_page form input {
+  height: 1rem;
+  width: 18rem;
+}/*# sourceMappingURL=signup_page.css.map */

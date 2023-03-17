@@ -1,3 +1,5 @@
+@use "../utilites/colors.scss" as clr;
+
 .overview_page {
     text-transform: capitalize;
 
@@ -25,7 +27,8 @@
                     }
 
                     p:hover {
-                        background-color: black;
+                        background-color: clr.$theme-color ;
+                        color: #fff;
                     }
                 }
             }

@@ -26,4 +26,18 @@
   display: flex;
   width: 100%;
   min-height: 100vh;
+}
+
+.holiday-btn {
+  background-color: #42a5f5 !important;
+  transition: 500ms;
+}
+.holiday-btn :hover {
+  transition: 500ms;
+}
+
+.employee_add-btn {
+  color: #42a5f5;
+  text-decoration: underline;
+  cursor: pointer;
 }/*# sourceMappingURL=common.css.map */
