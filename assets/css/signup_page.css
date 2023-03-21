@@ -14,4 +14,7 @@
 .signup_page form input {
   height: 1rem;
   width: 18rem;
+}
+.signup_page form button {
+  height: 2.3rem;
 }/*# sourceMappingURL=signup_page.css.map */
