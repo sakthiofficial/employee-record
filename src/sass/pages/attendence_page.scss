@@ -7,16 +7,28 @@
         text-transform: capitalize;
 
         &_icons {
-            color: red;
             display: flex;
-            justify-content: end;
+            justify-content: space-between;
             align-items: center;
+            margin: 1rem 0rem;
 
+
+
+            input {
+                padding: 2px 5px;
+
+            }
 
             &_add {
-                font-size: 2rem !important;
-                color: clr.$theme_color;
+                font-size: 1.5rem !important;
+                color: #000;
+
             }
+
+            button {
+                color: clr.$holiday_color
+            }
+
 
         }
 
@@ -76,4 +88,6 @@
             }
         }
     }
+
+
 }

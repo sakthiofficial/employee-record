@@ -19,7 +19,7 @@ export function HomeTable() {
     const [edit, setedit] = useState(true)
     const [table, settable] = useState([]);
     function getItem() {
-        fetch(api).then(dt => dt.json()).then(res => settable(res))
+        fetch(`${api}/${localStorage.getItem('username')} `).then(dt => dt.json()).then(res => settable(res))
 
     }
     useEffect(() => {
@@ -30,7 +30,7 @@ export function HomeTable() {
 
     }, [])
     function deleteitem(id) {
-        fetch(`${api}/employee/delete/${id}`, {
+        fetch(`${api}/employee/delete/${id}/${localStorage.getItem('username')}`, {
             method: "DELETE"
         }).then(res => {
             if (res.status == 200) {
@@ -40,7 +40,6 @@ export function HomeTable() {
                 getItem()
 
             }
-            console.log(res.status);
         })
     }
 
@@ -61,7 +60,7 @@ export function HomeTable() {
             setloder(true)
 
             if (val.method == "add") {
-                fetch(`${api}/employee/add`, {
+                fetch(`${api}/employee/add/${localStorage.getItem('username')}`, {
                     method: "POST",
                     body: JSON.stringify({ name: val.name, work: val.work }),
                     headers: {
@@ -75,7 +74,7 @@ export function HomeTable() {
 
                 })
             } else {
-                fetch(`${api}/employee/edit`, {
+                fetch(`${api}/employee/edit/${localStorage.getItem('username')}`, {
                     method: "PUT",
                     body: JSON.stringify({ name: val.name, work: val.work, id: val.id }),
                     headers: {
@@ -131,7 +130,7 @@ export function HomeTable() {
 
                     </thead>
                     <tbody className='home_table_tbody' >
-                        {
+                        {table.length == 0 ? <tr> <td colSpan="4" style={{ textAlign: "center" }}>Employee's were not  <span onClick={() => setadd(true)} className="employee_add-btn">added</span></td> </tr> :
                             table.map((val, ind) => {
                                 return (
                                     <tr>

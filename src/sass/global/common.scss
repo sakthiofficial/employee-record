@@ -36,3 +36,36 @@
 
 
 }
+
+.holiday-btn {
+    background-color: clr.$theme_color !important;
+    transition: 500ms;
+
+    :hover {
+        transition: 500ms;
+    }
+}
+
+.employee_add-btn {
+    color: clr.$theme_color;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.loder {
+    color: black;
+    margin-top: 0.4rem;
+    background-color: transparent;
+    animation: spin 0.5s infinite;
+
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,25 @@
+.signup_page {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        input {
+            height: 1rem;
+            width: 18rem;
+        }
+
+        button {
+            height: 2.3rem;
+        }
+
+        .signup_btn {}
+    }
+}
