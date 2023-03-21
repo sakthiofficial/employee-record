@@ -15,7 +15,7 @@ import { Signup } from './user_pages/signup';
 import { Login } from './user_pages/login';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 function App() {
-  const [nav, setnav] = useState(true)
+  const [nav, setnav] = useState(false)
 
   return (
     <BrowserRouter>
