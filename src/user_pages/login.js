@@ -52,7 +52,7 @@ export function Login() {
         <div className="login_page">
             <form onSubmit={handleSubmit}>
                 <TextField id="outlined-basic" color={errors.name ? "error" : "primary"} name="name" onChange={handleChange} label={errors.name ? errors.name : "Name"} variant="outlined" />
-                <TextField id="outlined-basic" color={errors.password ? "error" : "primary"} name="password" onChange={handleChange} label={errors.password ? errors.password : "Password"} variant="outlined" />
+                <TextField id="outlined-basic" color={errors.password ? "error" : "primary"} name="password" onChange={handleChange} type="password" label={errors.password ? errors.password : "Password"} variant="outlined" />
                 <div className="signup_btn" >
                     <Button variant='contained' type='submit' className='holiday-btn'>{loder ? <RefreshIcon className='loder' /> : "login"}</Button>
                     <Button onClick={() => navigate("/signup")}>signup</Button>

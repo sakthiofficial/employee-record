@@ -56,7 +56,7 @@ export function Signup() {
         <div className="signup_page">
             <form onSubmit={handleSubmit}>
                 <TextField id="outlined-basic" color={nameErr ? "error" : "primary"} name="name" onChange={handleChange} label={errors.name ? errors.name : nameErr ? "Name already used" : "Name"} variant="outlined" />
-                <TextField id="outlined-basic" color={errors.password ? "error" : "primary"} name="password" onChange={handleChange} label={errors.password ? errors.password : "Password"} variant="outlined" />
+                <TextField id="outlined-basic" color={errors.password ? "error" : "primary"} name="password" onChange={handleChange} label={errors.password ? errors.password : "Password"} type="password" variant="outlined" />
                 <TextField id="outlined-basic" color={errors.email ? "error" : "primary"} name="email" onChange={handleChange} label={errors.email ? errors.email : "Email"} variant="outlined" />
                 <Button variant='contained' type='submit' className='holiday-btn'>{loder ? <RefreshIcon className='loder' /> : "signup"}</Button>
 
