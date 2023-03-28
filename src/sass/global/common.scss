@@ -33,7 +33,9 @@
     width: 100%;
     min-height: 100vh;
 
-
+    @include res.responsive(md) {
+        display: block;
+    }
 
 }
 

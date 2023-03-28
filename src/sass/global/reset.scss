@@ -7,8 +7,4 @@
 
 }
 
-body {
-    @include res.responsive(xs) {
-        background-color: black;
-    }
-}
+body {}

@@ -6,6 +6,18 @@
   align-items: center;
   justify-content: space-between;
 }
+@media only screen and (max-width: 576px) {
+  .overview_page_icons {
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .overview_page_icons-name p {
+    display: none;
+  }
+}
 .overview_page_icons-name .dropdown {
   position: relative;
 }
@@ -20,6 +32,12 @@
 .overview_page_icons-name .dropdown_menus p {
   padding: 0.2rem 1rem;
   cursor: pointer;
+  display: none;
+}
+@media only screen and (max-width: 576px) {
+  .overview_page_icons-name .dropdown_menus p {
+    display: none;
+  }
 }
 .overview_page_icons-name .dropdown_menus p:hover {
   background-color: #42a5f5;

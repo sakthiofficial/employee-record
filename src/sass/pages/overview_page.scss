@@ -1,4 +1,6 @@
 @use "../utilites/colors.scss" as clr;
+@use "../abstract/mixins.scss" as res;
+
 
 .overview_page {
     text-transform: capitalize;
@@ -8,7 +10,23 @@
         align-items: center;
         justify-content: space-between;
 
+        @include res.responsive(xs) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: baseline;
+
+        }
+
         &-name {
+            p {
+
+
+                @include res.responsive(xs) {
+                    display: none;
+
+                }
+            }
+
             .dropdown {
                 position: relative;
 
@@ -24,6 +42,12 @@
                     p {
                         padding: 0.2rem 1rem;
                         cursor: pointer;
+                        display: none;
+
+                        @include res.responsive(xs) {
+                            display: none;
+
+                        }
                     }
 
                     p:hover {

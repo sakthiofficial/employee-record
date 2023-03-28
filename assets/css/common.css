@@ -27,6 +27,11 @@
   width: 100%;
   min-height: 100vh;
 }
+@media only screen and (max-width: 992px) {
+  .App {
+    display: block;
+  }
+}
 
 .holiday-btn {
   background-color: #42a5f5 !important;
