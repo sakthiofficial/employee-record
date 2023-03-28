@@ -8,7 +8,7 @@ import TableViewIcon from '@mui/icons-material/TableView';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Logo from "./images/Logo.png";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { BrowserRouter, Route, Router, Routes, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Router, Routes, Link, useNavigate, Navigate } from 'react-router-dom';
 import { Attendence } from './pages/Attendence_page';
 import { Overview } from './pages/Overview_page';
 import { Signup } from './user_pages/signup';
@@ -106,12 +106,15 @@ function App() {
   );
 }
 function ProductPage({ children }) {
-  let navigate = useNavigate()
+
+
   if (localStorage.getItem("username")) {
     return children
 
   } else {
-    navigate("/login")
+
+    return <Navigate to="/signup" replace />
+
   }
 
 }
