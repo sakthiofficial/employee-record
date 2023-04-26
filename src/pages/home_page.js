@@ -133,9 +133,9 @@ export function HomeTable() {
                         {table.length == 0 ? <tr> <td colSpan="4" style={{ textAlign: "center" }}>Employee's were not  <span onClick={() => setadd(true)} className="employee_add-btn">added</span></td> </tr> :
                             table.map((val, ind) => {
                                 return (
-                                    <tr>
+                                    <tr onClick={() => setedit(!edit)} style={{ cursor: 'pointer' }}>
                                         <td>{ind + 1}</td>
-                                        <td onClick={() => setedit(!edit)} className="name">{val.name}</td>
+                                        <td className="name">{val.name}</td>
                                         <td>{val.work}</td>
                                         {edit ? <td className='home_table_tbody-icons' > <EditIcon className='edit-icon' onClick={() => {
                                             setadd(true);

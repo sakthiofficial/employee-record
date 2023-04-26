@@ -13,11 +13,6 @@
     align-items: baseline;
   }
 }
-@media only screen and (max-width: 576px) {
-  .overview_page_icons-name p {
-    display: none;
-  }
-}
 .overview_page_icons-name .dropdown {
   position: relative;
 }
@@ -28,16 +23,11 @@
   box-shadow: 0px 2px 5px 0px black;
   max-height: 20rem;
   overflow-x: auto;
+  z-index: 100;
 }
 .overview_page_icons-name .dropdown_menus p {
   padding: 0.2rem 1rem;
   cursor: pointer;
-  display: none;
-}
-@media only screen and (max-width: 576px) {
-  .overview_page_icons-name .dropdown_menus p {
-    display: none;
-  }
 }
 .overview_page_icons-name .dropdown_menus p:hover {
   background-color: #42a5f5;

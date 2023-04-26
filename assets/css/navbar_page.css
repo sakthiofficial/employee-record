@@ -94,6 +94,8 @@ header .mobileview-menubar {
   display: flex;
   color: black;
   align-items: center;
+  margin: 0rem 1rem;
+  cursor: pointer;
 }
 @media only screen and (min-width: 1024px) {
   header .mobileview-menubar {
@@ -102,7 +104,7 @@ header .mobileview-menubar {
 }
 header .mobileview-menubar svg {
   width: 1.5rem;
-  height: 1.4rem;
+  height: 2rem;
 }
 header .mobileview-menubar_logo {
   flex-grow: 3;

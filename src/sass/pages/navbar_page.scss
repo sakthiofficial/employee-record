@@ -129,10 +129,12 @@ header {
         display: flex;
         color:black;
         align-items: center;
+        margin: 0rem 1rem;
+        cursor: pointer;
 
         svg {
             width: 1.5rem;
-            height: 1.4rem;
+            height: 2rem;
         }
 
         &_logo {

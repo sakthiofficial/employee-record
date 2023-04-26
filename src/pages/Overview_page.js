@@ -75,11 +75,11 @@ export function Overview() {
                 <div className="overview_page_icons">
                     <div className="overview_page_icons-name">
                         <p>Name :</p>
-                        <div className="dropdown"><input value={inputVal} placeholder=" Name" type="text" onClick={() => {
+                        <div className="dropdown"><input value={inputVal} type="text" onClick={() => {
                             setinputVal("")
                             setshow(true)
                         }} onChange={(e) => setinputVal(e.target.value)} />
-                            {show ? <div className="dropdown_menus">
+                            {show ? <div className="dropdown_menus" onMouseLeave={() => setshow(false)}>
 
                                 {
                                     name.length > 0 ? name.filter(((val) => inputVal == "" ? val.name : val.name.includes(inputVal))).map((val, ind) => {
